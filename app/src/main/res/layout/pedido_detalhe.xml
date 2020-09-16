@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="8dp"
+    android:layout_margin="10dp"
+    android:elevation="1dp">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFF"
+        android:paddingBottom="25dp">
+
+        <TextView
+            android:id="@+id/dadosCarga"
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/estilo_editlayout_pedir"
+            android:fontFamily="@font/roboto"
+            android:padding="10dp"
+            android:text="Roupa"
+            android:visibility="gone"
+            app:layout_constraintEnd_toStartOf="@+id/guideline10"
+            app:layout_constraintHorizontal_bias="0.117"
+            app:layout_constraintStart_toStartOf="@+id/textView29"
+            app:layout_constraintTop_toBottomOf="@+id/roundKornerRelativeLayout4" />
+
+        <ImageView
+            android:id="@+id/detalheDestino"
+            android:layout_width="34dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="32dp"
+            android:tint="@color/colorPrimary"
+            app:layout_constraintBottom_toBottomOf="@+id/textView35"
+            app:layout_constraintEnd_toStartOf="@+id/guideline10"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/textView35"
+            app:layout_constraintTop_toTopOf="@+id/textView35"
+            app:layout_constraintVertical_bias="1.0"
+            app:srcCompat="@drawable/ic_add_circle_black_24dp" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.12" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.88" />
+
+        <TextView
+            android:id="@+id/statusPedido"
+            android:layout_width="230dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/estilo_editlayout_pedir"
+            android:drawableLeft="@drawable/ic_error_black_24dp"
+            android:drawableTint="@color/colorPrimaryDark"
+            android:fontFamily="@font/roboto"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="Status: Aguardando"
+            android:textColor="#444"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/guideline10"
+            app:layout_constraintHorizontal_bias="0.478"
+            app:layout_constraintStart_toStartOf="@+id/guideline9"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView29"
+            android:layout_width="190dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/estilo_editlayout_pedir"
+            android:fontFamily="@font/roboto"
+            android:padding="10dp"
+            android:text="Carga"
+            android:textSize="16dp"
+            app:layout_constraintStart_toStartOf="@+id/statusPedido"
+            app:layout_constraintTop_toBottomOf="@+id/statusPedido" />
+
+        <ImageView
+            android:id="@+id/detalhePartida"
+            android:layout_width="34dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:tint="@color/colorPrimary"
+            app:layout_constraintBottom_toBottomOf="@+id/textView30"
+            app:layout_constraintEnd_toStartOf="@+id/guideline10"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/textView30"
+            app:layout_constraintTop_toTopOf="@+id/textView30"
+            app:layout_constraintVertical_bias="1.0"
+            app:srcCompat="@drawable/ic_add_circle_black_24dp" />
+
+        <ImageView
+            android:id="@+id/detalheCarga"
+            android:layout_width="34dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:tint="@color/colorPrimary"
+            app:layout_constraintBottom_toBottomOf="@+id/textView29"
+            app:layout_constraintEnd_toStartOf="@+id/guideline10"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/textView29"
+            app:layout_constraintTop_toTopOf="@+id/textView29"
+            app:layout_constraintVertical_bias="1.0"
+            app:srcCompat="@drawable/ic_add_circle_black_24dp" />
+
+        <com.jcminarro.roundkornerlayout.RoundKornerRelativeLayout
+            android:id="@+id/roundKornerRelativeLayout4"
+            android:layout_width="230dp"
+            android:layout_height="230dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/estilo_editlayout_pedir"
+            android:visibility="gone"
+            app:layout_constraintEnd_toStartOf="@+id/guideline10"
+            app:layout_constraintStart_toStartOf="@+id/guideline9"
+            app:layout_constraintTop_toBottomOf="@+id/textView29"
+            tools:ignore="MissingConstraints">
+
+            <com.jcminarro.roundkornerlayout.RoundKornerRelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="7dp"
+                app:corner_radius="8dp">
+
+                <ImageView
+                    android:id="@+id/cargaImg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="0dp"
+                    android:scaleType="centerCrop"
+                    android:src="@color/colorAccent" />
+
+
+            </com.jcminarro.roundkornerlayout.RoundKornerRelativeLayout>
+
+
+        </com.jcminarro.roundkornerlayout.RoundKornerRelativeLayout>
+
+        <TextView
+            android:id="@+id/textView30"
+            android:layout_width="190dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/estilo_editlayout_pedir"
+            android:fontFamily="@font/roboto"
+            android:padding="10dp"
+            android:text="Partida"
+            app:layout_constraintStart_toStartOf="@+id/textView29"
+            app:layout_constraintTop_toBottomOf="@+id/pedido_alerta"
+            tools:ignore="MissingConstraints" />
+
+
+        <TextView
+            android:id="@+id/textView35"
+            android:layout_width="190dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/estilo_editlayout_pedir"
+            android:fontFamily="@font/roboto"
+            android:padding="10dp"
+            android:text="Destino"
+            app:layout_constraintStart_toStartOf="@+id/textView30"
+            app:layout_constraintTop_toBottomOf="@+id/dadosPartida"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/dadosPartida"
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="9dp"
+            android:background="@drawable/estilo_editlayout_pedir"
+            android:fontFamily="@font/roboto"
+            android:padding="10dp"
+            android:text="Cidade: Santa Barbara D` Oeste\n\nBairro: Furlan\n\nRua: Alberto Lira\n\nN°: 177"
+            android:visibility="gone"
+            app:layout_constraintEnd_toStartOf="@+id/guideline10"
+            app:layout_constraintStart_toStartOf="@+id/guideline9"
+            app:layout_constraintTop_toBottomOf="@+id/textView30" />
+
+        <TextView
+            android:id="@+id/dadosDestino"
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/estilo_editlayout_pedir"
+            android:fontFamily="@font/roboto"
+            android:padding="10dp"
+            android:text="Cidade: Santa Barbara D` Oeste\n\nBairro: Furlan\n\nRua: Alberto Lira\n\nN°: 177"
+            android:visibility="gone"
+            app:layout_constraintEnd_toStartOf="@+id/guideline10"
+            app:layout_constraintStart_toStartOf="@+id/guideline9"
+            app:layout_constraintTop_toBottomOf="@+id/textView35" />
+
+        <Button
+            android:id="@+id/excluirPedido"
+            android:layout_width="230dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/estilo_botao_excluir"
+            android:fontFamily="@font/roboto"
+            android:text="Deletar"
+            android:textColor="#FFF"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/guideline10"
+            app:layout_constraintHorizontal_bias="0.478"
+            app:layout_constraintStart_toStartOf="@+id/guideline9"
+            app:layout_constraintTop_toBottomOf="@+id/dadosDestino" />
+
+        <TextView
+            android:id="@+id/pedido_data_confirma"
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/estilo_editlayout_pedir"
+            android:fontFamily="@font/roboto"
+            android:padding="10dp"
+            android:text="Data ainda não confirmada"
+            android:visibility="gone"
+            app:layout_constraintEnd_toStartOf="@+id/guideline10"
+            app:layout_constraintStart_toStartOf="@+id/guideline9"
+            app:layout_constraintTop_toBottomOf="@+id/dadosCarga" />
+
+        <TextView
+            android:id="@+id/pedido_alerta"
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/estilo_editlayout_pedir"
+            android:fontFamily="@font/roboto"
+            android:padding="10dp"
+            android:text="Nenhum alerta "
+            android:visibility="gone"
+            app:layout_constraintEnd_toStartOf="@+id/guideline10"
+            app:layout_constraintHorizontal_bias="0.483"
+            app:layout_constraintStart_toStartOf="@+id/guideline9"
+            app:layout_constraintTop_toBottomOf="@+id/pedido_data_confirma" />
+
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.v7.widget.CardView>

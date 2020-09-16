@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_perfil"
+            android:icon="@drawable/ic_person_24dp"
+            android:title="Perfil"/>
+
+        <item
+            android:id="@+id/nav_solicitacao"
+            android:icon="@drawable/ic_phone_24dp"
+            android:title="orçamentos" />
+    </group>
+
+    <item android:title="Comunicação">
+        <menu>
+            <item
+                android:id="@+id/nav_contato"
+                android:icon="@drawable/ic_email_black_24dp"
+                android:title="Contato" />
+        </menu>
+    </item>
+
+</menu>

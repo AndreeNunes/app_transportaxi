@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "531287032578",
+    "firebase_url": "https://transportaxi-ii.firebaseio.com",
+    "project_id": "transportaxi-ii",
+    "storage_bucket": "transportaxi-ii.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:531287032578:android:830f0116c6c4e081",
+        "android_client_info": {
+          "package_name": "br.senai.sp.transportxi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "531287032578-out0mk8277fhcdv3me9uuqlo07ov2aeo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.senai.sp.transportxi",
+            "certificate_hash": "dbbb9a64fcceda22a8bf39f3171e5948b4ea0300"
+          }
+        },
+        {
+          "client_id": "531287032578-ruj0cmumfsgosvtg65qm9hbrimmfm3hm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqjBo3MUwwNp6F3O9lHeofJjqC2XMe9m4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "531287032578-ruj0cmumfsgosvtg65qm9hbrimmfm3hm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_requisicoes_t"
+            android:icon="@drawable/ic_reply_24dp"
+            android:title="Requisições"/>
+
+        <item
+            android:id="@+id/nav_perfil_t"
+            android:icon="@drawable/ic_person_24dp"
+            android:title="Perfil"/>
+
+        <item
+            android:id="@+id/nav_viagem_t"
+            android:icon="@drawable/truckzinho"
+            android:title="Viagem"/>
+
+        <item
+            android:id="@+id/nav_agenda_t"
+            android:icon="@drawable/ic_agenda_24dp"
+            android:title="Agenda" />
+
+    </group>
+
+    <item android:title="Comunicação">
+        <menu>
+            <item
+                android:id="@+id/nav_contato_t"
+                android:icon="@drawable/ic_email_black_24dp"
+                android:title="Contato" />
+        </menu>
+    </item>
+
+</menu>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/BarraMenuLista"
+        android:title="Pedido"
+        android:icon="@drawable/ic_sobre_24dp" />
+
+    <item
+        android:id="@+id/BarraMenuPedido"
+        android:title="Encomendar"
+        android:icon="@drawable/truckzinho"/>
+
+</menu>
