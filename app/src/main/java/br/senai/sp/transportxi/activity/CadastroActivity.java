@@ -98,7 +98,8 @@ public class CadastroActivity extends AppCompatActivity {
     }
 
     public void voltarTelaLogin(View v){
-        System.out.println("OLÁAAAAAAA EU SOU O BOTÃO DE VOLTAR");
+        new Intent(CadastroActivity.this, LoginActivity.class);
+        finish();
     }
 
     public boolean validarData() {

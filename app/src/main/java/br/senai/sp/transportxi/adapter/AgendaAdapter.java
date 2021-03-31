@@ -258,7 +258,7 @@ public class AgendaAdapter extends RecyclerView.Adapter<AgendaAdapter.MyViewHold
 
                     builder.show();
 
-                }else if (botao.equals("Confirmar")){
+                }else if (botao.equals("Confirmar")) {
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(context);
                     LayoutInflater li = LayoutInflater.from(context);
@@ -281,11 +281,9 @@ public class AgendaAdapter extends RecyclerView.Adapter<AgendaAdapter.MyViewHold
                             final Viagem v = new Viagem();
 
                             if (dataP.isChecked()) {
-
-
                                 Pedido p = new Pedido();
                                 p.setIdPedido(a.getIdPedido());
-                                p.setDataConfirmada("Data: "+a.getData() + " ás " + a.getHora());
+                                p.setDataConfirmada("Data: " + a.getData() + " ás " + a.getHora());
                                 p.atualizarData();
                                 Agenda agenda = new Agenda();
                                 agenda.setIdAgenda(a.getIdAgenda());
@@ -294,12 +292,10 @@ public class AgendaAdapter extends RecyclerView.Adapter<AgendaAdapter.MyViewHold
                                 agenda.setDataConfirmada(a.getData() + " ás " + a.getHora());
                                 agenda.atualizarData();
                                 holder.confirmar.setText("INICIAR");
-
                             } else if (dataS.isChecked()) {
-
                                 Pedido p = new Pedido();
                                 p.setIdPedido(a.getIdPedido());
-                                p.setDataConfirmada("Data: "+a.getDataAux() + " ás " + a.getHoraAux());
+                                p.setDataConfirmada("Data: " + a.getDataAux() + " ás " + a.getHoraAux());
                                 p.atualizarData();
                                 Agenda agenda = new Agenda();
                                 agenda.setIdAgenda(a.getIdAgenda());
@@ -308,7 +304,6 @@ public class AgendaAdapter extends RecyclerView.Adapter<AgendaAdapter.MyViewHold
                                 agenda.setDataConfirmada(a.getDataAux() + " ás " + a.getHoraAux());
                                 agenda.atualizarData();
                                 holder.confirmar.setText("INICIAR");
-
                             } else {
                                 Toast.makeText(context, "Por favor escolha uma data", Toast.LENGTH_SHORT).show();
                             }
@@ -322,9 +317,6 @@ public class AgendaAdapter extends RecyclerView.Adapter<AgendaAdapter.MyViewHold
                     builder.setView(visualAlert);
                     builder.show();
                 }
-
-
-
             }
         });
 
