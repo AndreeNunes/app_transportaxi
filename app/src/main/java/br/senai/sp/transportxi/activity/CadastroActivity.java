@@ -37,8 +37,7 @@ import br.senai.sp.transportxi.objetos.Mask;
 import br.senai.sp.transportxi.objetos.Obj_Usuario;
 import br.senai.sp.transportxi.R;
 
-public class CadastroActivity extends AppCompatActivity
-{
+public class CadastroActivity extends AppCompatActivity {
     TextInputLayout etNome, etSobre, etData, etTel, etEmail, etSenha, etConfirmaSenha;
     String Nome, Sobre, data, Tel, Email, Senha, ConfirmaSenha;
     Button btnEnviar, btnDate;
@@ -62,349 +61,298 @@ public class CadastroActivity extends AppCompatActivity
     }
 
 
-        public void pegandoValorEditText(){
-            Nome = etNome.getEditText().getText().toString();
-            data = etData.getEditText().getText().toString();
-            Tel = etTel.getEditText().getText().toString();
-            Email = etEmail.getEditText().getText().toString();
-            Senha = etSenha.getEditText().getText().toString();
-            ConfirmaSenha = etConfirmaSenha.getEditText().getText().toString();
+    public void pegandoValorEditText() {
+        Nome = etNome.getEditText().getText().toString();
+        data = etData.getEditText().getText().toString();
+        Tel = etTel.getEditText().getText().toString();
+        Email = etEmail.getEditText().getText().toString();
+        Senha = etSenha.getEditText().getText().toString();
+        ConfirmaSenha = etConfirmaSenha.getEditText().getText().toString();
+    }
 
-            System.out.println(data+"+++++++++++++++++++++++++++++++++++");
-        }
+    public void iniciando() {
+        etData = (TextInputLayout) findViewById(R.id.text_data_nascimento);
+        etConfirmaSenha = (TextInputLayout) findViewById(R.id.text_confirma_senha);
+        etNome = (TextInputLayout) findViewById(R.id.text_nome);
+        etTel = (TextInputLayout) findViewById(R.id.text_telefone);
+        etEmail = (TextInputLayout) findViewById(R.id.text_email);
+        etSenha = (TextInputLayout) findViewById(R.id.text_senha);
+        TipoUsuario = (Switch) findViewById(R.id.TipoUsuario);
+    }
 
-        public void iniciando(){
+    public void cadastrar(View v) {
+        verificaDadosMask();
+        validarData();
 
-            etData              = (TextInputLayout)    findViewById(R.id.text_data_nascimento);
-            etConfirmaSenha     = (TextInputLayout)    findViewById(R.id.text_confirma_senha);
-            etNome              = (TextInputLayout)    findViewById(R.id.text_nome);
-            etTel               = (TextInputLayout)    findViewById(R.id.text_telefone);
-            etEmail             = (TextInputLayout)    findViewById(R.id.text_email);
-            etSenha             = (TextInputLayout)    findViewById(R.id.text_senha);
-            TipoUsuario         = (Switch)             findViewById(R.id.TipoUsuario);
+        if (TipoUsuario.isChecked()) cadastroTransportador();
+        else cadastroEncomendador();
+    }
 
-        }
+    public void alertCarregando(Boolean loading) {
+        if (loading) {
+            dialog = new Dialog(this);
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+            dialog.setContentView(R.layout.carregando);
+            dialog.show();
+        } else dialog.dismiss();
+    }
 
-        public void cadastrar(View v){
+    public void voltarTelaLogin(View v){
+        System.out.println("OLÁAAAAAAA EU SOU O BOTÃO DE VOLTAR");
+    }
 
-            verificaDadosMask();
+    public boolean validarData() {
+        boolean retorno = false;
+        String date = etData.getEditText().getText().toString();
 
-            validarData();
-
-            if(TipoUsuario.isChecked()){
-
-                //TRANPORTADOR
-                cadastroTransportador();
-
-            }
-            else
-            {
-                //ENCOMENDADOR
-                cadastroEncomendador();
-            }
-        }
-
-        public void alertCarregando(Boolean b){
-            if(b)
-            {
-                dialog = new Dialog(this);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-                dialog.setContentView(R.layout.carregando);
-                dialog.show();
-            }
-            else
-            {
-                dialog.dismiss();
-            }
-        }
-
-
-        public boolean validarData(){
-
-            String date = etData.getEditText().getText().toString();
-
-            String dia = date.substring(0,2);
-
+        if(date.length() > 0) {
+            String dia = date.substring(0, 2);
             String mes = date.substring(3, 5);
-
             String ano = date.substring(6, 10);
 
-            if(Integer.parseInt(dia) >= 1 && Integer.parseInt(dia) <= 31){
-
-                if(Integer.parseInt(mes) >= 1 && Integer.parseInt(mes) <= 12){
-
-                    if(Integer.parseInt(ano) >= 1900 && Integer.parseInt(ano) <= 2000){
-                        return true;
-                    }else{
-                        return false;
-                    }
-                }else{
-                    return false;
-                }
-            }else{
-                return false;
+            if ((Integer.parseInt(dia) >= 1 && Integer.parseInt(dia) <= 31) && Integer.parseInt(mes) >= 1 && Integer.parseInt(mes) <= 12 && Integer.parseInt(ano) >= 1900 && Integer.parseInt(ano) <= 2000) {
+                retorno = true;
             }
         }
 
-        public void cadastroTransportador(){
+        return retorno;
+    }
 
-            alertCarregando(true);
+    public void cadastroTransportador() {
+        alertCarregando(true);
+        pegandoValorEditText();
 
-            pegandoValorEditText();
-
-
-
-            if(!Nome.equals("")) {
-                if (!data.equals("") && validarData()) {
-                    if (!Tel.equals("")) {
-                        if (!Email.equals("")) {
-                            if (!Senha.equals("")) {
-                                if (!ConfirmaSenha.equals("") && ConfirmaSenha.equals(Senha)) {
-                                    Obj_Usuario usuario = new Obj_Usuario();
-                                    usuario.setNome_user(Nome);
-                                    usuario.setData_user(data);
-                                    usuario.setTelefone_user(Tel);
-                                    usuario.setEmail_user(Email);
-                                    usuario.setSenha_user(Senha);
-                                    usuario.setCaminho_foto("vazio");
-                                    cadastrandoTransportador(usuario);
-                                } else {
-                                    alertCarregando(false);
-                                    Toast.makeText(this,
-                                            "Preencha a senha corretamente !",
-                                            Toast.LENGTH_SHORT).show();
-                                    //ivCofirmaError.setImageResource(R.drawable.ic_error_24dp);
-                                }
-                            } else {
-                                alertCarregando(false);
-                                Toast.makeText(this,
-                                        "Preencha a senha !",
-                                        Toast.LENGTH_SHORT).show();
-                                //ivSenhaError.setImageResource(R.drawable.ic_error_24dp);
-                            }
-                        } else {
-                            alertCarregando(false);
-                            Toast.makeText(this,
-                                    "Preencha o email !",
-                                    Toast.LENGTH_SHORT).show();
-                            //ivEmailError.setImageResource(R.drawable.ic_error_24dp);
-
-                        }
-                    } else {
-                        alertCarregando(false);
-                        Toast.makeText(this,
-                                "Preencha o telefone!",
-                                Toast.LENGTH_SHORT).show();
-                        //ivTelError.setImageResource(R.drawable.ic_error_24dp);
-                    }
-                } else {
-                    alertCarregando(false);
-                    Toast.makeText(this,
-                            "preencha a data corretamente !",
-                            Toast.LENGTH_SHORT).show();
-                    //ivDataError.setImageResource(R.drawable.ic_error_24dp);
-
-                }
-
-            }
-            else {
-
-                alertCarregando(false);
-                Toast.makeText(this,
-                        "Preencha o nome !",
-                        Toast.LENGTH_SHORT).show();
-                //ivNomeError.setImageResource(R.drawable.ic_error_24dp);
-            }
-        }
-
-        public void cadastrandoTransportador(Obj_Usuario usuario){
-            auth_usuario = Config_firebase.getAuth_transportaxi();
-            cadastro = Config_firebase.getBanco_tansportaxi().child("usuarios");
-
-            auth_usuario.createUserWithEmailAndPassword(usuario.getEmail_user(),usuario.getSenha_user())
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>()
-                    {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task)
-                        {
-                            if(task.isSuccessful())
-                            {
-                                pegandoValorEditText();
+        if (!Nome.equals("")) {
+            if (!data.equals("") && validarData()) {
+                if (!Tel.equals("")) {
+                    if (!Email.equals("")) {
+                        if (!Senha.equals("")) {
+                            if (!ConfirmaSenha.equals("") && ConfirmaSenha.equals(Senha)) {
                                 Obj_Usuario usuario = new Obj_Usuario();
-
-                                String idUsuario = task.getResult().getUser().getUid();
-                                usuario.setId( idUsuario );
                                 usuario.setNome_user(Nome);
                                 usuario.setData_user(data);
                                 usuario.setTelefone_user(Tel);
                                 usuario.setEmail_user(Email);
                                 usuario.setSenha_user(Senha);
                                 usuario.setCaminho_foto("vazio");
-                                usuario.setTipo_usuario("T"); //transportador
-                                usuario.salvar();
-
-                                Intent i = new Intent(CadastroActivity.this,CadastroVeiculoActivity.class);
-                                startActivity(i);
-                                finish();
-                            }
-                            else
-                            {
-                                String erro = "";
-                                alertCarregando(false);
-
-                                try
-                                {
-                                    throw task.getException();
-                                }
-                                catch (FirebaseAuthWeakPasswordException e)
-                                {
-                                    erro = "Senha muito fraca, tente novamente.";
-
-                                }
-                                catch (FirebaseAuthInvalidCredentialsException e)
-                                {
-                                    erro = "Email digitado é invalido.";
-                                }
-                                catch (FirebaseAuthUserCollisionException e)
-                                {
-                                    erro = "Conta já existente.";
-                                }
-                                catch (Exception e)
-                                {
-                                    erro = "Ocorreu algum erro, tente novamente.";
-                                }
-
-                                Toast.makeText(CadastroActivity.this,
-                                        erro,Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
-        }
-
-        public void cadastroEncomendador(){
-
-            pegandoValorEditText();
-            alertCarregando(true);
-
-            if(!Nome.equals("")) {
-                if (!data.equals("") && validarData()) {
-                    if (!Tel.equals("")) {
-                        if (!Email.equals("")) {
-                            if (!Senha.equals("")) {
-                                if (!ConfirmaSenha.equals("") && ConfirmaSenha.equals(Senha)) {
-                                    Obj_Usuario usuario = new Obj_Usuario();
-                                    usuario.setNome_user(Nome);
-                                    usuario.setData_user(data);
-                                    usuario.setTelefone_user(Tel);
-                                    usuario.setEmail_user(Email);
-                                    usuario.setSenha_user(Senha);
-                                    usuario.setCaminho_foto("vazio");
-                                    cadastrandoEncomendador(usuario);
-                                } else {
-                                    alertCarregando(false);
-                                    Toast.makeText(this,
-                                            "preencha a senha corretamente!",
-                                            Toast.LENGTH_SHORT).show();
-                                    //ivCofirmaError.setImageResource(R.drawable.ic_error_24dp);
-                                }
+                                cadastrandoTransportador(usuario);
                             } else {
                                 alertCarregando(false);
                                 Toast.makeText(this,
-                                        "Preencha a senha !",
+                                        "Preencha a senha corretamente !",
                                         Toast.LENGTH_SHORT).show();
-                                //ivSenhaError.setImageResource(R.drawable.ic_error_24dp);
+                                //ivCofirmaError.setImageResource(R.drawable.ic_error_24dp);
                             }
                         } else {
                             alertCarregando(false);
                             Toast.makeText(this,
-                                    "Preencha o email !",
+                                    "Preencha a senha !",
                                     Toast.LENGTH_SHORT).show();
-                            //ivEmailError.setImageResource(R.drawable.ic_error_24dp);
-
+                            //ivSenhaError.setImageResource(R.drawable.ic_error_24dp);
                         }
                     } else {
                         alertCarregando(false);
                         Toast.makeText(this,
-                                "Preencha o telefone !",
+                                "Preencha o email !",
                                 Toast.LENGTH_SHORT).show();
-                        //ivTelError.setImageResource(R.drawable.ic_error_24dp);
+                        //ivEmailError.setImageResource(R.drawable.ic_error_24dp);
+
                     }
                 } else {
                     alertCarregando(false);
                     Toast.makeText(this,
-                            "preencha a data corretamente !",
+                            "Preencha o telefone!",
                             Toast.LENGTH_SHORT).show();
-                    //ivDataError.setImageResource(R.drawable.ic_error_24dp);
-
+                    //ivTelError.setImageResource(R.drawable.ic_error_24dp);
                 }
-
-            }
-            else {
+            } else {
                 alertCarregando(false);
                 Toast.makeText(this,
-                        "Preencha o nome !",
+                        "preencha a data corretamente !",
                         Toast.LENGTH_SHORT).show();
-                //ivNomeError.setImageResource(R.drawable.ic_error_24dp);
+                //ivDataError.setImageResource(R.drawable.ic_error_24dp);
             }
-        }
-
-        public void cadastrandoEncomendador(Obj_Usuario usuario){
-            auth_usuario = Config_firebase.getAuth_transportaxi();
-            cadastro = Config_firebase.getBanco_tansportaxi().child("usuarios");
-
-            auth_usuario.createUserWithEmailAndPassword(usuario.getEmail_user(),usuario.getSenha_user())
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-                                pegandoValorEditText();
-                                Obj_Usuario usuario = new Obj_Usuario();
-
-                                String idUsuario = task.getResult().getUser().getUid();
-                                usuario.setId( idUsuario );
-                                usuario.setId(idUsuario);
-                                usuario.setNome_user(Nome);
-                                usuario.setData_user(data);
-                                usuario.setTelefone_user(Tel);
-                                usuario.setEmail_user(Email);
-                                usuario.setSenha_user(Senha);
-                                usuario.setCaminho_foto("vazio");
-                                usuario.setTipo_usuario("E"); //encomendador
-                                usuario.salvar();// (usuario);
-
-                                Intent i = new Intent(CadastroActivity.this,PrincipalActivityEncomendador.class);
-                                startActivity(i);
-                                finish();
-
-                            } else {
-                                String erro = "";
-                                alertCarregando(false);
-
-                                try {
-                                    throw task.getException();
-                                } catch (FirebaseAuthWeakPasswordException e) {
-                                    erro = "Senha muito fraca, tente novamente.";
-                                } catch (FirebaseAuthInvalidCredentialsException e) {
-                                    erro = "Email digitado é invalido.";
-                                    etEmail.clearFocus();
-                                } catch (FirebaseAuthUserCollisionException e) {
-                                    erro = "Conta já existente.";
-                                } catch (Exception e) {
-                                    erro = "Ocorreu algum erro." + e.getMessage();
-                                    e.printStackTrace();
-                                }
-
-                                Toast.makeText(CadastroActivity.this,
-                                        erro, Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
-        }
-
-        public boolean verificaDadosMask() {
-
-
-
-            return true;
+        } else {
+            alertCarregando(false);
+            Toast.makeText(this,
+                    "Preencha o nome !",
+                    Toast.LENGTH_SHORT).show();
+            //ivNomeError.setImageResource(R.drawable.ic_error_24dp);
         }
     }
+
+    public void cadastrandoTransportador(Obj_Usuario usuario) {
+        auth_usuario = Config_firebase.getAuth_transportaxi();
+        cadastro = Config_firebase.getBanco_tansportaxi().child("usuarios");
+
+        auth_usuario.createUserWithEmailAndPassword(usuario.getEmail_user(), usuario.getSenha_user())
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            pegandoValorEditText();
+                            Obj_Usuario usuario = new Obj_Usuario();
+
+                            String idUsuario = task.getResult().getUser().getUid();
+                            usuario.setId(idUsuario);
+                            usuario.setNome_user(Nome);
+                            usuario.setData_user(data);
+                            usuario.setTelefone_user(Tel);
+                            usuario.setEmail_user(Email);
+                            usuario.setSenha_user(Senha);
+                            usuario.setCaminho_foto("vazio");
+                            usuario.setTipo_usuario("T"); //transportador
+                            usuario.salvar();
+
+                            Intent i = new Intent(CadastroActivity.this, CadastroVeiculoActivity.class);
+                            startActivity(i);
+                            finish();
+                        } else {
+                            String erro = "";
+                            alertCarregando(false);
+
+                            try {
+                                throw task.getException();
+                            } catch (FirebaseAuthWeakPasswordException e) {
+                                erro = "Senha muito fraca, tente novamente.";
+
+                            } catch (FirebaseAuthInvalidCredentialsException e) {
+                                erro = "Email digitado é invalido.";
+                            } catch (FirebaseAuthUserCollisionException e) {
+                                erro = "Conta já existente.";
+                            } catch (Exception e) {
+                                erro = "Ocorreu algum erro, tente novamente.";
+                            }
+
+                            Toast.makeText(CadastroActivity.this,
+                                    erro, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+
+    public void cadastroEncomendador() {
+
+        pegandoValorEditText();
+        alertCarregando(true);
+
+        if (!Nome.equals("")) {
+            if (!data.equals("") && validarData()) {
+                if (!Tel.equals("")) {
+                    if (!Email.equals("")) {
+                        if (!Senha.equals("")) {
+                            if (!ConfirmaSenha.equals("") && ConfirmaSenha.equals(Senha)) {
+                                Obj_Usuario usuario = new Obj_Usuario();
+                                usuario.setNome_user(Nome);
+                                usuario.setData_user(data);
+                                usuario.setTelefone_user(Tel);
+                                usuario.setEmail_user(Email);
+                                usuario.setSenha_user(Senha);
+                                usuario.setCaminho_foto("vazio");
+                                cadastrandoEncomendador(usuario);
+                            } else {
+                                alertCarregando(false);
+                                Toast.makeText(this,
+                                        "preencha a senha corretamente!",
+                                        Toast.LENGTH_SHORT).show();
+                                //ivCofirmaError.setImageResource(R.drawable.ic_error_24dp);
+                            }
+                        } else {
+                            alertCarregando(false);
+                            Toast.makeText(this,
+                                    "Preencha a senha !",
+                                    Toast.LENGTH_SHORT).show();
+                            //ivSenhaError.setImageResource(R.drawable.ic_error_24dp);
+                        }
+                    } else {
+                        alertCarregando(false);
+                        Toast.makeText(this,
+                                "Preencha o email !",
+                                Toast.LENGTH_SHORT).show();
+                        //ivEmailError.setImageResource(R.drawable.ic_error_24dp);
+
+                    }
+                } else {
+                    alertCarregando(false);
+                    Toast.makeText(this,
+                            "Preencha o telefone !",
+                            Toast.LENGTH_SHORT).show();
+                    //ivTelError.setImageResource(R.drawable.ic_error_24dp);
+                }
+            } else {
+                alertCarregando(false);
+                Toast.makeText(this,
+                        "preencha a data corretamente !",
+                        Toast.LENGTH_SHORT).show();
+                //ivDataError.setImageResource(R.drawable.ic_error_24dp);
+
+            }
+
+        } else {
+            alertCarregando(false);
+            Toast.makeText(this,
+                    "Preencha o nome !",
+                    Toast.LENGTH_SHORT).show();
+            //ivNomeError.setImageResource(R.drawable.ic_error_24dp);
+        }
+    }
+
+    public void cadastrandoEncomendador(Obj_Usuario usuario) {
+        auth_usuario = Config_firebase.getAuth_transportaxi();
+        cadastro = Config_firebase.getBanco_tansportaxi().child("usuarios");
+
+        auth_usuario.createUserWithEmailAndPassword(usuario.getEmail_user(), usuario.getSenha_user())
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            pegandoValorEditText();
+                            Obj_Usuario usuario = new Obj_Usuario();
+
+                            String idUsuario = task.getResult().getUser().getUid();
+                            usuario.setId(idUsuario);
+                            usuario.setId(idUsuario);
+                            usuario.setNome_user(Nome);
+                            usuario.setData_user(data);
+                            usuario.setTelefone_user(Tel);
+                            usuario.setEmail_user(Email);
+                            usuario.setSenha_user(Senha);
+                            usuario.setCaminho_foto("vazio");
+                            usuario.setTipo_usuario("E"); //encomendador
+                            usuario.salvar();// (usuario);
+
+                            Intent i = new Intent(CadastroActivity.this, PrincipalActivityEncomendador.class);
+                            startActivity(i);
+                            finish();
+
+                        } else {
+                            String erro = "";
+                            alertCarregando(false);
+
+                            try {
+                                throw task.getException();
+                            } catch (FirebaseAuthWeakPasswordException e) {
+                                erro = "Senha muito fraca, tente novamente.";
+                            } catch (FirebaseAuthInvalidCredentialsException e) {
+                                erro = "Email digitado é invalido.";
+                                etEmail.clearFocus();
+                            } catch (FirebaseAuthUserCollisionException e) {
+                                erro = "Conta já existente.";
+                            } catch (Exception e) {
+                                erro = "Ocorreu algum erro." + e.getMessage();
+                                e.printStackTrace();
+                            }
+
+                            Toast.makeText(CadastroActivity.this,
+                                    erro, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+
+    public boolean verificaDadosMask() {
+
+
+        return true;
+    }
+}
